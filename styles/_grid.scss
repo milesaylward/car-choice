@@ -1,0 +1,123 @@
+@use "sass:math";
+@import './_prelude.scss';
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 100%;
+  max-width: $maxWidth;
+  padding: 0 16px;
+  @include bpMedium {
+    padding: 0 32px;
+  }
+  @include bpLarge {
+    padding: 0 64px;
+  }
+}
+
+.full {
+  max-width: unset;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 25px;
+  padding-right: 25px;
+
+  &.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.justify-content-center {
+  justify-content: center;
+}
+.align-items-center {
+  align-items: center;
+}
+
+$i: 1;
+$columnCount: nth($columns, $i);
+$diff: math.div(100%, $columnCount);
+
+@for $column from 0 through ($columnCount) {
+  .col-#{$column} {
+    width: $column * $diff;
+  }
+  .col-#{$column}-half {
+    width: ($column * $diff) + (math.div($diff, 2));
+  }
+
+  .col-offset-#{$column} {
+    margin-left: $column * $diff;
+  }
+  .col-offset-#{$column}-half {
+    margin-left: ($column * $diff) + (math.div($diff, 2));
+  }
+}
+
+// BREAKPOINTS
+$i: 1;
+@each $mediaquery in $breakpoint-names {
+  @include media-query(#{$mediaquery}) {
+    $columnCount: nth($columns, $i);
+    $padding: nth($paddings, $i);
+    $diff: math.div(100%, $columnCount);
+
+    .row {
+      padding-left: $padding;
+      padding-right: $padding;
+      box-sizing: border-box;
+
+      &.no-padding {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    .full-row {
+      width: 100%;
+      padding: 0;
+    }
+
+    @for $column from 0 through ($columnCount) {
+      .col-#{$mediaquery}-#{$column} {
+        width: $column * $diff;
+      }
+      .col-#{$mediaquery}-#{$column}-half {
+        width: ($column * $diff) + (math.div($diff, 2));
+      }
+
+      .col-#{$mediaquery}-offset-#{$column} {
+        margin-left: $column * $diff;
+      }
+      .col-#{$mediaquery}-offset-#{$column}-half {
+        margin-left: ($column * $diff) + (math.div($diff, 2));
+      }
+    }
+  }
+
+  $i: $i + 1;
+}
+
+.xlg {
+  @media screen and (max-width: ($breakpointXLValue - 1px)) {
+    display: none;
+  }
+}
+
+.desktop {
+  @media screen and (max-width: $breakpointLValue) {
+    display: none !important;
+  }
+}
+.mobile {
+  @media screen and (min-width: ($breakpointLValue + 1)) {
+    display: none !important;
+  }
+}

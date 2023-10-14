@@ -1,0 +1,225 @@
+@use "sass:color";
+@import "./variables";
+
+/* -------------------- */
+// Fonts
+
+$line-height: 1.33;
+
+// Fonts - Display
+@mixin displayFont {
+  font-family: $poppins;
+  font-weight: 700;
+  line-height: $line-height;
+}
+
+@mixin hasDisplay1FontSize {
+  @include displayFont;
+  font-size: 64px;
+  @include bpMedium {
+    font-size: 80px;
+  }
+}
+@mixin hasDisplay2FontSize {
+  @include displayFont;
+  font-size: 56px;
+  @include bpMedium {
+    font-size: 72px;
+  }
+}
+@mixin hasDisplay3FontSize {
+  @include displayFont;
+  font-size: 48px;
+  @include bpMedium {
+    font-size: 64px;
+  }
+}
+@mixin hasDisplay4FontSize {
+  @include displayFont;
+  font-size: 40px;
+  @include bpMedium {
+    font-size: 56px;
+  }
+}
+@mixin hasDisplay5FontSize {
+  @include displayFont;
+  font-size: 32px;
+  @include bpMedium {
+    font-size: 48px;
+  }
+}
+@mixin hasDisplay6FontSize {
+  @include displayFont;
+  font-size: 24px;
+  @include bpMedium {
+    font-size: 40px;
+  }
+}
+
+// Fonts - Body
+@mixin bodyFont {
+  font-family: $openSans;
+  font-weight: 400;
+  line-height: 1.5;
+}
+@mixin hasBodyFontSize {
+  @include bodyFont;
+  font-size: 20px;
+}
+@mixin hasBody1FontSize {
+  @include bodyFont;
+  font-size: 20px;
+}
+@mixin hasBody2FontSize {
+  @include bodyFont;
+  font-size: 16px;
+}
+@mixin hasBody3FontSize {
+  @include bodyFont;
+  font-size: 14px;
+}
+
+// Fonts - Other
+
+@mixin hasSubtitleFontSize {
+  @include displayFont;
+  font-weight: 500;
+  font-size: 20px;
+  @include bpMedium {
+    font-size: 24px;
+  }
+}
+
+/* -------------------- */
+// Breakpoints
+
+/**
+ * Sets a media query for the specified breakpoint
+ *
+ * Accepts:
+ * - $media-query: {String} Breakpoint variable (list found in variables.scss)
+ *
+ * Usage:
+ * .selector {
+ *   @include media-query($medium-up) {
+ *     color: red;
+ *   }
+ * }
+ */
+@mixin media-query($media-query) {
+  $breakpoint-found: false;
+
+  @each $breakpoint in $breakpoints {
+    $name: nth($breakpoint, 1);
+    $declaration: nth($breakpoint, 2);
+    @if $media-query == $name and $declaration {
+      $breakpoint-found: true;
+      @media screen and #{$declaration} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin bpSmall {
+  @media screen and (max-width: $breakpointMobile) {
+    @content;
+  }
+}
+
+@mixin bpMedium {
+  @media screen and (min-width: #{$breakpointTablet + 1px}) {
+    @content;
+  }
+}
+
+@mixin bpLarge {
+  @media screen and (min-width: #{$breakpointDesktop + 1px}) {
+    @content;
+  }
+}
+
+@mixin bpXLarge {
+  @media screen and (min-width: #{$maxWidth + 1px}) {
+    @content;
+  }
+}
+
+@mixin mobileOnly {
+  @media screen and (max-width: $breakpointTablet) {
+    @content;
+  }
+}
+
+@mixin tabletOnly {
+  @media screen and (min-width: #{$breakpointTablet + 1px}) and (max-width: #{$breakpointDesktop}) {
+    @content;
+  }
+}
+
+/* -------------------- */
+// Buttons
+
+@mixin onHover {
+  &:hover {
+    body:not(body.touch) & {
+      @content;
+    }
+  }
+
+  &.hover {
+    @content;
+  }
+}
+
+@mixin focus-visible {
+  @supports not selector(:focus-visible) {
+    &:focus {
+      @content;
+    }
+  }
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin buttonStyle {
+  padding: 12px 28px;
+  background: $lightMaroon;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: color 300ms $authenticMotion, background 300ms $authenticMotion, border 300ms $authenticMotion;
+  border: 1px solid rgba($maroon, 0);
+  @include onHover {
+    background: $maroon;
+  }
+  &--outline {
+    background: rgba($maroon, 0);
+    border: 1px solid $white;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    &::before {
+      content: '';
+      background: $maroon;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      transform-origin: right center;
+      transition: transform 300ms $authenticMotion;
+      transform: scaleX(0);
+    }
+    @include onHover {
+      background: rgba($maroon, 0);
+      border-color: $maroon;
+      &::before {
+        transform-origin: left center;
+        transform: scaleX(1);
+      }
+    }
+  }
+}

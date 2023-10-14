@@ -1,0 +1,6 @@
+// The prelude file houses commonly includes files such as mixins, variables, etc.
+// DO NOT import classes here as they may be compounded and produce
+// unnintended/crowded styling results.
+@import "./variables";
+@import "./easing";
+@import "./mixins";

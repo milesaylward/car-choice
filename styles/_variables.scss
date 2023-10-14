@@ -1,0 +1,57 @@
+$inter: "Inter", sans-serif;
+$openSans: "Open Sans", sans-serif;
+$poppins: "Poppins", sans-serif;
+
+$headerHeight: 70px;
+$headerHeightMobile: 70px;
+$headerHeightDesktop: 90px;
+
+// $maxWidth: 1728px;
+$maxWidth: 1440px;
+
+$breakpointMobile: 320px; // 0px - 320px
+// Mobile only (mobile through tablet) // 0px - 767px
+$breakpointTablet: 768px; // 768px - 1023px
+// $breakpointDesktop: 992px; // 1024px - 1280px
+$breakpointDesktop: 1024px;
+$gutters: 20px;
+
+$engineering-orange: #d10a0aff;
+$raisin-black: #231f20ff;
+$silver: #bfc0c0ff;
+$maroon: #860707ff;
+$myrtle-green: #426b69ff;
+$lightMaroon: lighten($maroon, 5%);
+$black: #000;
+$white: #fff;
+$slate-gray: #677881;
+$jet-stream: #c1cbcf;
+$platinum: #dee2e6;
+
+
+$breakpoint-names: (sm, md, lg, xl, xxl);
+
+$paddings: (15px, 20px, 50px, 80px, 100px);
+
+$breakpointSValue: 320px;
+$breakpointMValue: 768px;
+$breakpointLValue: 992px;
+$breakpointXLValue: 1200px;
+$breakpointXXLValue: 1400px;
+
+$breakpointS: sm;
+$breakpointM: md;
+$breakpointL: lg;
+$breakpointXL: xl;
+$breakpointXLI: xli;
+$breakpointXXL: xxl;
+
+$columns: 12 12 12 12 12;
+
+$breakpoints: (
+  $breakpointS "(max-width: #{$breakpointSValue})",
+  $breakpointM "(min-width: #{$breakpointMValue})",
+  $breakpointL "(min-width: #{$breakpointLValue})",
+  $breakpointXL "(min-width: #{$breakpointXLValue})",
+  $breakpointXXL "(min-width: #{$breakpointXXLValue})"
+);

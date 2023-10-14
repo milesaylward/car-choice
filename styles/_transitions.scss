@@ -1,0 +1,43 @@
+.ap-parent {
+  .ap-child {
+    opacity: 0;
+    &:not(.ap-fade) {
+      transform: translateY(30px);
+    }
+    &.ap-scale {
+      transform: scale(0);
+    }
+  }
+}
+#app.mounted {
+  .ap-parent {
+    &:not(.has-appeared) {
+      .ap-child {
+        transition: transform 600ms $authenticMotion, opacity 600ms $authenticMotion;
+        &.ap-fade { transition: opacity 600ms $authenticMotion; }
+        &.ap-scale { transition: transform 600ms $authenticMotion; }
+        @for $i from 1 through 20 {
+          &.ap-child--#{$i} {
+            transition-delay: #{85ms * $i};
+          }
+        }
+        @for $i from 1 through 10 {
+          &.ap-delay--#{$i} {
+            transition-delay: #{250ms * $i};
+          }
+        }
+      }
+    }
+    &.visible {
+      .ap-child {
+        opacity: 1;
+        &:not(.ap-fade) {
+          transform: translateY(0);
+        }
+        &.ap-scale {
+          transform: scale(1);
+        }
+      }
+    }
+  }
+}

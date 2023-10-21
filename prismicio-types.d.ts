@@ -4,7 +4,79 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type PageDocumentDataSlicesSlice = TwoUpSlice | HeroSlice | RichTextSlice;
+type GlobalDocumentDataSlicesSlice = HeaderLinkSlice;
+
+type GlobalDocumentDataSlices1Slice = HeaderLinkSlice;
+
+/**
+ * Content for Global documents
+ */
+interface GlobalDocumentData {
+  /**
+   * Header Button Label field in *Global*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: global.header_button_label
+   * - **Tab**: Header
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  header_button_label: prismic.KeyTextField;
+
+  /**
+   * Header Button Link field in *Global*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: global.header_button_link
+   * - **Tab**: Header
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  header_button_link: prismic.LinkField;
+
+  /**
+   * Slice Zone field in *Global*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: global.slices[]
+   * - **Tab**: Header
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<GlobalDocumentDataSlicesSlice>
+  /**
+   * Slice Zone field in *Global*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: global.slices1[]
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices1: prismic.SliceZone<GlobalDocumentDataSlices1Slice>;
+}
+
+/**
+ * Global document from Prismic
+ *
+ * - **API ID**: `global`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type GlobalDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<GlobalDocumentData>,
+    "global",
+    Lang
+  >;
+
+type PageDocumentDataSlicesSlice =
+  | CardsSectionSlice
+  | TwoUpSlice
+  | HeroSlice
+  | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -45,7 +117,182 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-export type AllDocumentTypes = PageDocument;
+export type AllDocumentTypes = GlobalDocument | PageDocument;
+
+/**
+ * Primary content in *CardsSection → Primary*
+ */
+export interface CardsSectionSliceDefaultPrimary {
+  /**
+   * Headline field in *CardsSection → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  headline: prismic.KeyTextField;
+
+  /**
+   * Button Label field in *CardsSection → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.primary.button_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_label: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *CardsSection → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Primary content in *CardsSection → Items*
+ */
+export interface CardsSectionSliceDefaultItem {
+  /**
+   * Card Title field in *CardsSection → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.items[].card_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  card_title: prismic.KeyTextField;
+
+  /**
+   * Card Body field in *CardsSection → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.items[].card_body
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  card_body: prismic.KeyTextField;
+
+  /**
+   * Card Image field in *CardsSection → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.items[].card_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  card_image: prismic.ImageField<never>;
+
+  /**
+   * Card Time field in *CardsSection → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.items[].card_time
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  card_time: prismic.KeyTextField;
+
+  /**
+   * Card Price field in *CardsSection → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.items[].card_price
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  card_price: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for CardsSection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CardsSectionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CardsSectionSliceDefaultPrimary>,
+  Simplify<CardsSectionSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *CardsSection*
+ */
+type CardsSectionSliceVariation = CardsSectionSliceDefault;
+
+/**
+ * CardsSection Shared Slice
+ *
+ * - **API ID**: `cards_section`
+ * - **Description**: CardsSection
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CardsSectionSlice = prismic.SharedSlice<
+  "cards_section",
+  CardsSectionSliceVariation
+>;
+
+/**
+ * Primary content in *Link → Primary*
+ */
+export interface HeaderLinkSliceDefaultPrimary {
+  /**
+   * Link Label field in *Link → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header_link.primary.link_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_label: prismic.KeyTextField;
+
+  /**
+   * link field in *Link → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: header_link.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
+
+/**
+ * Default variation for Link Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeaderLinkSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HeaderLinkSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Link*
+ */
+type HeaderLinkSliceVariation = HeaderLinkSliceDefault;
+
+/**
+ * Link Shared Slice
+ *
+ * - **API ID**: `header_link`
+ * - **Description**: HeaderLink
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeaderLinkSlice = prismic.SharedSlice<
+  "header_link",
+  HeaderLinkSliceVariation
+>;
 
 /**
  * Primary content in *Hero → Items*
@@ -200,18 +447,85 @@ export type RichTextSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *TwoUp → Items*
+ * Default variation for Tabs Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
  */
-export interface TwoUpSliceDefaultItem {
+export type TabsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *Tabs*
+ */
+type TabsSliceVariation = TabsSliceDefault;
+
+/**
+ * Tabs Shared Slice
+ *
+ * - **API ID**: `tabs`
+ * - **Description**: Tabs
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TabsSlice = prismic.SharedSlice<"tabs", TabsSliceVariation>;
+
+/**
+ * Primary content in *TwoUp → Primary*
+ */
+export interface TwoUpSliceDefaultPrimary {
   /**
-   * eyebrow field in *TwoUp → Items*
+   * Eyebrow field in *TwoUp → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: two_up.items[].eyebrow
+   * - **API ID Path**: two_up.primary.eyebrow
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   eyebrow: prismic.KeyTextField;
+
+  /**
+   * Headline field in *TwoUp → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: two_up.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  headline: prismic.KeyTextField;
+
+  /**
+   * Body Text field in *TwoUp → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: two_up.primary.body_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  body_text: prismic.KeyTextField;
+
+  /**
+   * Animation field in *TwoUp → Primary*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: two_up.primary.animation
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  animation: prismic.LinkToMediaField;
+
+  /**
+   * Image field in *TwoUp → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: two_up.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
 }
 
 /**
@@ -223,8 +537,8 @@ export interface TwoUpSliceDefaultItem {
  */
 export type TwoUpSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
-  Simplify<TwoUpSliceDefaultItem>
+  Simplify<TwoUpSliceDefaultPrimary>,
+  never
 >;
 
 /**
@@ -251,10 +565,23 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      GlobalDocument,
+      GlobalDocumentData,
+      GlobalDocumentDataSlicesSlice,
+      GlobalDocumentDataSlices1Slice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      CardsSectionSlice,
+      CardsSectionSliceDefaultPrimary,
+      CardsSectionSliceDefaultItem,
+      CardsSectionSliceVariation,
+      CardsSectionSliceDefault,
+      HeaderLinkSlice,
+      HeaderLinkSliceDefaultPrimary,
+      HeaderLinkSliceVariation,
+      HeaderLinkSliceDefault,
       HeroSlice,
       HeroSliceDefaultItem,
       HeroSliceVariation,
@@ -264,8 +591,11 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultItem,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      TabsSlice,
+      TabsSliceVariation,
+      TabsSliceDefault,
       TwoUpSlice,
-      TwoUpSliceDefaultItem,
+      TwoUpSliceDefaultPrimary,
       TwoUpSliceVariation,
       TwoUpSliceDefault,
     };

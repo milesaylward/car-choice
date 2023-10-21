@@ -28,7 +28,7 @@ html {
   }
 }
 
-main {
+body {
   margin: 0;
   overscroll-behavior: none;
   color: black;
@@ -39,6 +39,7 @@ main {
   letter-spacing: 0.2px;
   display: flex;
   flex-direction: column;
+  color: $ghost-white;
 
   &.locked {
     overflow: hidden;
@@ -77,6 +78,22 @@ main {
   .display-2 {
     @include hasDisplay2FontSize;
   }
+  .display-3 {
+    @include hasDisplay3FontSize;
+  }
+  .display-4 {
+    @include hasDisplay4FontSize;
+  }
+  .display-5 {
+    @include hasDisplay5FontSize;
+  }
+  .display-6 {
+    @include hasDisplay6FontSize;
+  }
+
+  .eyebrow {
+    @include hasEyebrowFontSize;
+  }
 
   .subtitle {
     @include hasSubtitleFontSize;
@@ -84,9 +101,8 @@ main {
 
   .body {
     @include hasBodyFontSize;
-  }
-
-  .button {
-    @include buttonStyle;
+    &-small {
+      @include hasBodySmallFontSize;
+    }
   }
 }

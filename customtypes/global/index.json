@@ -1,0 +1,50 @@
+{
+  "id": "global",
+  "label": "Global",
+  "format": "page",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Header": {
+      "header_button_label": {
+        "type": "Text",
+        "config": {
+          "label": "Header Button Label",
+          "placeholder": ""
+        }
+      },
+      "header_button_link": {
+        "type": "Link",
+        "config": {
+          "label": "Header Button Link",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "header_link": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "Footer": {
+      "slices1": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "header_link": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

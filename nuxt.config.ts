@@ -1,4 +1,5 @@
 import { repositoryName } from './slicemachine.config.json'
+import svgLoader from "vite-svg-loader";
 import path from 'path'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -11,8 +12,12 @@ export default defineNuxtConfig({
         },
       },
     },
+    plugins: [
+      svgLoader({
+        svgo: false,
+      }),
+    ],
   },
-  ssr: false,
   alias: {
     '@': path.resolve(__dirname, './'),
     '@store': path.resolve(__dirname, './core/store'),
@@ -32,14 +37,17 @@ export default defineNuxtConfig({
         { name: 'format-detection', content: 'telephone=no' },
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    }
+    },
+    pageTransition: { name: 'page', mode: 'out-in' }
   },
+
   modules: [
     '@nuxtjs/prismic',
     '@pinia/nuxt'
   ],
+
   prismic: {
-    endpoint: 'car-choice',
+    endpoint: repositoryName,
     preview: '/api/preview',
     clientConfig: {
       routes: [
@@ -54,5 +62,8 @@ export default defineNuxtConfig({
         },
       ]
     }
+  },
+  devtools: {
+    enabled: true,
   },
 })

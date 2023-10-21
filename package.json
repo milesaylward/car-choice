@@ -25,7 +25,10 @@
     "slice-machine-ui": "^1.16.0"
   },
   "dependencies": {
+    "@nuxt/devtools": "^1.0.0",
     "@pinia/nuxt": "^0.5.0",
-    "pinia": "^2.1.7"
+    "pinia": "^2.1.7",
+    "vite-svg-loader": "^4.0.0",
+    "vue3-lottie": "^3.2.0"
   }
 }

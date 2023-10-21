@@ -1,10 +1,10 @@
 $inter: "Inter", sans-serif;
 $openSans: "Open Sans", sans-serif;
 $poppins: "Poppins", sans-serif;
+$chakra: 'Chakra', sans-serif;
 
-$headerHeight: 70px;
-$headerHeightMobile: 70px;
-$headerHeightDesktop: 90px;
+$headerHeight: 80px;
+$headerHeightDesktop: 80px;
 
 // $maxWidth: 1728px;
 $maxWidth: 1440px;
@@ -16,17 +16,11 @@ $breakpointTablet: 768px; // 768px - 1023px
 $breakpointDesktop: 1024px;
 $gutters: 20px;
 
-$engineering-orange: #d10a0aff;
-$raisin-black: #231f20ff;
-$silver: #bfc0c0ff;
-$maroon: #860707ff;
-$myrtle-green: #426b69ff;
-$lightMaroon: lighten($maroon, 5%);
-$black: #000;
-$white: #fff;
-$slate-gray: #677881;
-$jet-stream: #c1cbcf;
-$platinum: #dee2e6;
+$night: #161616;
+$imperial-red: #A82110;
+$ghost-white: #e8ebf7;
+$slate-gray: #708090;
+$xanthous: #F2AF29;
 
 
 $breakpoint-names: (sm, md, lg, xl, xxl);

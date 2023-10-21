@@ -10,22 +10,24 @@
     <div
       v-for="(item, index) in slice.items"
       :class="['hero__item ap-parent', { hide: activeIndex !== index, visible: appearIndex === index }]"
-      v-appear="{ css: false }"
       :key="index"
+      v-appear="{ css: false }"
       ref="heroSlide"
     >
-      <PrismicImage :field="item.image" class="hero__item__image" />
+      <PrismicImage
+        :field="item.image"
+        class="hero__item__image"
+        :style="backgroundStyle"
+      />
       <div class="hero__item__overlay" />
       <div class="hero__item__content container">
-        <h1 class="text-center display-2 ap-child">
+        <h1 class="display-2 ap-child">
           {{ item.headline_text }}
         </h1>
-        <h3 class="text-center subtitle ap-child ap-child--1">{{ item.subtitle_text }}</h3>
-        <p class="text-center ap-child ap-child--2">{{ item.body_text }}</p>
+        <h3 class="subtitle ap-child ap-child--1">{{ item.subtitle_text }}</h3>
+        <p class="body ap-child ap-child--2">{{ item.body_text }}</p>
         <span class="ap-child ap-child--3" v-if="item.button_text">
-          <PrismicLink :field="item.button_link" class="button button--outline">
-            {{ item.button_text }}
-          </PrismicLink>
+          <Button :label="item.button_text" :field="item.button_link" />
         </span>
       </div>
     </div>
@@ -35,15 +37,20 @@
 <script setup lang="ts">
 import { Content } from "@prismicio/client";
 import { useUIStore } from "@store/uiStore";
+import { storeToRefs } from "pinia";
 
 const props = defineProps(getSliceComponentProps<Content.HeroSlice>(["slice", "index", "slices", "context"]));
-const uiStore = useUIStore();
+const { showLoader, scrollPos } = storeToRefs(useUIStore());
 
 const isCarousel = computed(() => props.slice.items.length > 1);
 const activeIndex = ref(0);
-const appearIndex = ref(0);
+const appearIndex = ref<number | null>(null);
 const heroSlide = ref();
 let slideInterval: NodeJS.Timer;
+
+const backgroundStyle = computed(() => ({
+  transform: `scale(1.2) translateY(${scrollPos.value * 0.1}px)`
+}));
 
 const changeSlide = () => {
   activeIndex.value = (activeIndex.value + 1) % props.slice.items.length;
@@ -54,15 +61,17 @@ const changeSlide = () => {
 
 const handleAnimSlide = () => {
   appearIndex.value = activeIndex.value;
-  if (!slideInterval && isCarousel.value) slideInterval = setInterval(changeSlide, 6000);
+  if (!slideInterval && isCarousel.value) slideInterval = setInterval(changeSlide, 10000);
 };
 
-
+watch(showLoader, () => {
+  handleAnimSlide();
+});
 
 onMounted(() => {
-  console.log(uiStore.pageLoaded);
-  if (uiStore.pageLoaded) handleAnimSlide();
+  if (!showLoader.value) handleAnimSlide();
 });
+
 </script>
 
 
@@ -90,7 +99,7 @@ onMounted(() => {
       z-index: 1;
       width: 100%;
       height: 100%;
-      background: rgba(black, 0.35);
+      background: rgba(black, 0.65);
     }
     &__image {
       width: 100%;
@@ -103,10 +112,7 @@ onMounted(() => {
       left: 50%;
       z-index: 2;
       transform: translate(-50%, -50%);
-      display: flex;
-      flex-direction: column;
-      color: white;
-      align-items: center;
+      display: block;
       h1 {
         text-wrap: balance;
         text-transform: uppercase;
@@ -117,7 +123,7 @@ onMounted(() => {
       p {
         text-wrap: balance;
         max-width: 800px;
-        margin: 16px auto 0;
+        margin: 16px 0 0;
       }
       .button {
         margin-top: 32px;

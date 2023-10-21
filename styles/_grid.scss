@@ -23,22 +23,31 @@
 .row {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  min-width: 100%;
   margin: 0 auto;
   position: relative;
-  padding-left: 25px;
-  padding-right: 25px;
-
-  &.no-padding {
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
-.justify-content-center {
+
+.flex {
+  display: flex;
+}
+.justify-center {
   justify-content: center;
 }
-.align-items-center {
+.justify-around {
+  justify-content: space-around;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.align-center {
   align-items: center;
+}
+.align-end {
+  align-items: flex-end;
 }
 
 $i: 1;
@@ -68,17 +77,6 @@ $i: 1;
     $columnCount: nth($columns, $i);
     $padding: nth($paddings, $i);
     $diff: math.div(100%, $columnCount);
-
-    .row {
-      padding-left: $padding;
-      padding-right: $padding;
-      box-sizing: border-box;
-
-      &.no-padding {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
 
     .full-row {
       width: 100%;

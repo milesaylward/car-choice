@@ -11,16 +11,46 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
-      "primary": {},
-      "items": {
+      "primary": {
         "eyebrow": {
           "type": "Text",
           "config": {
-            "label": "eyebrow",
+            "label": "Eyebrow",
             "placeholder": ""
           }
+        },
+        "headline": {
+          "type": "Text",
+          "config": {
+            "label": "Headline",
+            "placeholder": ""
+          }
+        },
+        "body_text": {
+          "type": "Text",
+          "config": {
+            "label": "Body Text",
+            "placeholder": ""
+          }
+        },
+        "animation": {
+          "type": "Link",
+          "config": {
+            "label": "Animation",
+            "placeholder": "",
+            "select": "media"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
-      }
+      },
+      "items": {}
     }
   ]
 }

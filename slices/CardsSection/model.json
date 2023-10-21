@@ -1,0 +1,78 @@
+{
+  "id": "cards_section",
+  "type": "SharedSlice",
+  "name": "CardsSection",
+  "description": "CardsSection",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "headline": {
+          "type": "Text",
+          "config": {
+            "label": "Headline",
+            "placeholder": ""
+          }
+        },
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "Button Label",
+            "placeholder": ""
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      },
+      "items": {
+        "card_title": {
+          "type": "Text",
+          "config": {
+            "label": "Card Title",
+            "placeholder": ""
+          }
+        },
+        "card_body": {
+          "type": "Text",
+          "config": {
+            "label": "Card Body",
+            "placeholder": ""
+          }
+        },
+        "card_image": {
+          "type": "Image",
+          "config": {
+            "label": "Card Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "card_time": {
+          "type": "Text",
+          "config": {
+            "label": "Card Time",
+            "placeholder": ""
+          }
+        },
+        "card_price": {
+          "type": "Text",
+          "config": {
+            "label": "Card Price",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}

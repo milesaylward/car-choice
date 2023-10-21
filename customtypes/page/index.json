@@ -27,6 +27,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "cards_section": {
+              "type": "SharedSlice"
+            },
             "two_up": {
               "type": "SharedSlice"
             },

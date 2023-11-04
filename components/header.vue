@@ -12,7 +12,7 @@
           :components="components"
         />
         <div class="header__button">
-          <Button :label="button.label" :field="button.link" />
+          <CcButton :label="button.label" :field="button.link" />
         </div>
       </div>
     </div>
@@ -55,7 +55,8 @@ const { slices, button } = getOptions('header');
     }
   }
   &__logo {
-    width: 300px;
+    width: 20%;
+    max-width: 300px;
     flex-shrink: 0;
     display: flex;
     img {

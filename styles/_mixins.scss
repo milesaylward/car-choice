@@ -72,6 +72,14 @@ $line-height: 1.13;
   font-size: 14px;
 }
 
+@mixin hasBodyLargeFontSize {
+  @include bodyFont;
+  font-size: 20px;
+  @include bpMedium {
+    font-size: 24px
+  }
+}
+
 @mixin hasEyebrowFontSize {
   @include bodyFont;
   font-family: $inter;
@@ -88,6 +96,34 @@ $line-height: 1.13;
   font-size: 20px;
   @include bpMedium {
     font-size: 24px;
+  }
+}
+
+@mixin inlineLink {
+  font-family: $chakra;
+  font-weight: 600;
+  color: $ghost-white;
+  text-decoration: none;
+  margin: 0 20px;
+  padding: 8px 0;
+  font-size: 16px;
+  position: relative;
+  &::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 1px;
+    bottom: 6px;
+    background-color: $ghost-white;
+    left: 0;
+    transform-origin: left center;
+    transition: transform 300ms $authenticMotion;
+    transform: scaleX(0);
+  }
+  @include onHover {
+    &::after {
+      transform: scaleX(1);
+    }
   }
 }
 

@@ -1,0 +1,22 @@
+{
+  "id": "service_types",
+  "label": "Service Types",
+  "format": "custom",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "form_service_type": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

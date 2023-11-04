@@ -1,8 +1,8 @@
 {
-  "id": "tabs",
+  "id": "test",
   "type": "SharedSlice",
-  "name": "Tabs",
-  "description": "Tabs",
+  "name": "Test",
+  "description": "Test",
   "variations": [
     {
       "id": "default",

@@ -10,7 +10,7 @@
           <h5 class="display-6">{{ headline }}</h5>
         </div>
         <span class="ap-child ap-child--1">
-          <Button :label="button_label" :field="button_link" type="outline" />
+          <CcButton :label="button_label" :field="button_link" type="outline" />
         </span>
       </div>
       <div class="row cards-section__row" v-appear="{ threshold: 0.5 }">

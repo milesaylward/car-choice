@@ -10,49 +10,39 @@
   </main>
 </template>
 
-
-        
 <script setup lang="ts">
 import { components } from '~/slices'
-import { useUIStore } from '@store/uiStore';
-import { storeToRefs } from 'pinia';
+import { useUIStore } from '@/core/store/uiStore';
 
 const prismic = usePrismic()
+const route = useRoute()
+const uiStore = useUIStore();
 const { public: { maps_key } } = useRuntimeConfig();
-const { data: page } = await useAsyncData('index', () => prismic.client.getByUID('page', 'home'));
+const { data: page } = await useAsyncData(
+  `[service_page-uid-${route.params.uid}]`,
+  () => prismic.client.getByUID("service_page", route.params.uid as string)
+);
+
+const wrapper = ref();
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
 }
-const uiStore = useUIStore();
-const { showLoader } = storeToRefs(uiStore);
-const wrapper = ref();
-
-watch(showLoader, () => {
-  setTimeout(() => { wrapper.value?.classList.add('mounted'); }, 500);
-});
-useHead({
-  title: prismic.asText(page.value?.data.title)
-});
 
 
 onMounted(() => {
-  setTimeout(() => {
-    uiStore.setPageLoaded(true);
-  }, 1000);
+  uiStore.setPageLoaded(true);
   setTimeout(() => {
     wrapper.value?.classList.add('mounted');
-  }, 500);
+  }, 1000);
+});
+useHead({
+  title: `Car Choice Service - ${page.value?.data.title}`,
+  meta: [
+    {
+      name: "description",
+      content: page.value?.data.meta_description,
+    },
+  ],
 });
 </script>
-
-<style lang="scss">
-#app {
-  min-height: 100vh;
-  .google-map {
-    display: flex;
-    width: 100%;
-  }
-}
-</style>
-
 

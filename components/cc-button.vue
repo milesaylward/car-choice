@@ -5,8 +5,17 @@
     v-if="prismic && field"
     :class="[type && `button--${type}`]"
   > 
-    <span class="button__content">{{ label }}</span>
+    <span class="button__content" v-if="!iconOnly">{{ label }}</span>
+    <span class="icon material-symbols-outlined" v-if="icon">{{ icon }}</span>
   </PrismicLink>
+  <button
+    class="button"
+    :class="classes"
+    v-else
+  >
+    <span class="button__content" v-if="!iconOnly">{{ label }}</span>
+    <span class="icon material-symbols-outlined" v-if="icon">{{ icon }}</span>
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -17,7 +26,12 @@ const props = defineProps({
   },
   label: {
     type: String,
-    required: true
+  },
+  iconOnly: {
+    default: false,
+  },
+  icon: {
+    type: String,
   },
   field: {
     type: null,
@@ -26,6 +40,11 @@ const props = defineProps({
     type: String,
   }
 });
+
+const classes = computed(() => ([
+  props.type && `button--${props.type}`,
+  props.iconOnly && 'button--icon-only'
+]))
 
 </script>
 
@@ -40,10 +59,15 @@ const props = defineProps({
   text-transform: uppercase;
   transition: 300ms $authenticMotion;
   border: 1px solid $imperial-red;
+  cursor: pointer;
   clip-path: polygon(0 0, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 20px 100%, 0% calc(100% - 20px));
-  &__content {
+  &__content, .icon {
     position: relative;
     z-index: 2;
+  }
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
   }
   @include onHover {
     background: transparent;
@@ -77,6 +101,14 @@ const props = defineProps({
         transform: scaleX(1);
       }
     }
+  }
+  &--icon-only {
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

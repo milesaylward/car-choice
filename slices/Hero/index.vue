@@ -27,7 +27,7 @@
         <h3 class="subtitle ap-child ap-child--1">{{ item.subtitle_text }}</h3>
         <p class="body ap-child ap-child--2">{{ item.body_text }}</p>
         <span class="ap-child ap-child--3" v-if="item.button_text">
-          <Button :label="item.button_text" :field="item.button_link" />
+          <CcButton :label="item.button_text" :field="item.button_link" />
         </span>
       </div>
     </div>

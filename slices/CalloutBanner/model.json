@@ -1,0 +1,33 @@
+{
+  "id": "callout_banner",
+  "type": "SharedSlice",
+  "name": "CalloutBanner",
+  "description": "CalloutBanner",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {},
+      "items": {
+        "stat_number": {
+          "type": "Text",
+          "config": {
+            "label": "Stat Number",
+            "placeholder": ""
+          }
+        },
+        "stat_text": {
+          "type": "Text",
+          "config": {
+            "label": "Stat Text",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}

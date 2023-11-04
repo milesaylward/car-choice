@@ -1,0 +1,80 @@
+{
+  "id": "content_block",
+  "type": "SharedSlice",
+  "name": "ContentBlock",
+  "description": "ContentBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "main_text": {
+          "type": "Text",
+          "config": {
+            "label": "Main Text",
+            "placeholder": ""
+          }
+        },
+        "sub_text": {
+          "type": "Text",
+          "config": {
+            "label": "Sub Text",
+            "placeholder": ""
+          }
+        },
+        "main_image": {
+          "type": "Image",
+          "config": {
+            "label": "Main Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "sub_image_1": {
+          "type": "Image",
+          "config": {
+            "label": "Sub Image 1",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "sub_image_2": {
+          "type": "Image",
+          "config": {
+            "label": "Sub Image 2",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "Button Label",
+            "placeholder": ""
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      },
+      "items": {
+        "list_item": {
+          "type": "Text",
+          "config": {
+            "label": "List Item",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}

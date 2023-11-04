@@ -1,0 +1,30 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"quote",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "coffee",
+							"type": "Text"
+						}
+					],
+					[
+						"name",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "food",
+							"type": "Text"
+						}
+					]
+				]
+			}
+		]
+	}
+]

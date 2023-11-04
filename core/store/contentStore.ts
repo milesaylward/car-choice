@@ -15,11 +15,12 @@ export const useContentStore = defineStore('content', {
       this.options[key] = content;
     },
     async checkOptions() {
-      const data = ['header'].map((opt) => this.options[opt]);
+      const data = ['header', 'footer'].map((opt) => this.options[opt]);
       const prismic = usePrismic()
       if (!data.every(val => val)) {
         const { data } = await useAsyncData('global', () => prismic.client.getSingle('global'));
         if (data.value) {
+          console.log(data.value);
           const { data: global_data } = data.value;
           const header = {
             button: {
@@ -28,7 +29,15 @@ export const useContentStore = defineStore('content', {
             },
             slices: global_data.slices
           }
+          const footer = {
+            contact_info: global_data.contact_info,
+            columns: [
+              { label: global_data.label_1, links: global_data.slices2 },
+              { label: global_data.label_2, links: global_data.slices3 }
+            ]
+          }
           this.options.header = header;
+          this.options.footer = footer;
         }
       }
     }

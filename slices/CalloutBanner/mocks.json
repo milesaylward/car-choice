@@ -1,0 +1,30 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"stat_number",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "announced",
+							"type": "Text"
+						}
+					],
+					[
+						"stat_text",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "managed",
+							"type": "Text"
+						}
+					]
+				]
+			}
+		]
+	}
+]

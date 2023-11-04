@@ -34,7 +34,45 @@
       }
     },
     "Footer": {
-      "slices1": {
+      "contact_info": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Contact Info",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,hyperlink"
+        }
+      }
+    },
+    "Footer Column 1": {
+      "label_1": {
+        "type": "Text",
+        "config": {
+          "label": "Label 1",
+          "placeholder": ""
+        }
+      },
+      "slices2": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "header_link": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "Footer Column 2": {
+      "label_2": {
+        "type": "Text",
+        "config": {
+          "label": "Label 2",
+          "placeholder": ""
+        }
+      },
+      "slices3": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {

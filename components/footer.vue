@@ -6,25 +6,28 @@
           <NuxtLink to="/" class="footer__logo">
             <img :src="Logo" />
           </NuxtLink>
-          <p class="body-small">
-            At Car Choice we want to be your first stop for all your vehicle repair & maintenance needs.
-          </p>
+          <PrismicRichText :field="contact_info" class="footer__rich-text" />
         </div>
         <div class="col-6 flex">
-          <div class="footer-column" v-for="column in fakeColumns">
+          <div class="footer-column" v-for="column in link_columns">
             <p class="subtitle">
               {{ column.label }}
             </p>
             <ul class="footer-column-list">
-              <li v-for="item in column.items">
-                <InlineLink :label="item.label" />
+              <li v-for="link in column.links">
+                <PrismicLink
+                  :field="link.primary.link"
+                  class="link"
+                >
+                {{ link.primary.link_label }}
+                </PrismicLink>
               </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="legal">
+  <div class="legal">
       <div class="container">
         <div class="row">
           <p class="legal">Copyrights © 2023 Car Choice Service. All rights reserved.</p>
@@ -35,30 +38,15 @@
 </template>
 
 <script setup lang="ts">
+  import { useContentStore } from '~/core/store/contentStore';
+
+  const { getOptions } = useContentStore();
+  const { contact_info, columns } = getOptions('footer');
   import Logo from '@/assets/images/logo.png';
-  const fakeColumns = [
-    {
-      label: 'ABOUT US',
-      items: [
-        { label: 'OUR WORK' },
-        { label: 'OUR TEAM' },
-        { label: 'FAQ' },
-      ]
-    },
-    {
-      label: 'POPULAR SERVICES',
-      items: [
-        { label: 'TIRE REPAIR' },
-        { label: 'BRAKE REPAIR' },
-        { label: 'ENGINE REPAIR' },
-        { label: 'STEERING REPAIR' },
-        { label: 'COOLING SYSTEM' },
-        { label: 'WHEEL ALIGNMENT' },
-        { label: 'BATTERY STARTING' },
-        { label: 'SUPSPENSION REPAIR' },
-      ]
-    }
-  ]
+  const link_columns = columns.map((col: any) => (
+    { label: col.label, links: col.links }
+  ));
+  
 </script>
 
 <style lang="scss">
@@ -82,13 +70,31 @@
   .body-small {
     text-wrap: balance;
   }
+  &__rich-text {
+    margin-top: 16px;
+    strong {
+      font-size: 16px;
+      color: $xanthous;
+      font-weight: 600;
+      text-underline-offset: 4px;
+    }
+    p {
+      margin: 0;
+      &:first-of-type { margin-bottom: 16px;}
+      a {
+        @include inlineLink;
+        display: inline-block;
+        padding-top: 0;
+        margin: 0;
+      }
+    }
+  }
 
   .subtitle {
     margin: 0;
     font-size: 16px;
     color: $xanthous;
     font-weight: 600;
-    // text-decoration: underline;
     text-underline-offset: 4px;
   }
   .footer-column {

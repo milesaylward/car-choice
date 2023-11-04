@@ -1,0 +1,57 @@
+{
+  "id": "service_cards",
+  "type": "SharedSlice",
+  "name": "ServiceCards",
+  "description": "ServiceCards",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {
+        "service_link": {
+          "type": "Link",
+          "config": {
+            "label": "Service Link",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "icon": {
+          "type": "Image",
+          "config": {
+            "label": "Icon",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "service_name": {
+          "type": "Text",
+          "config": {
+            "label": "Service Name",
+            "placeholder": ""
+          }
+        },
+        "body_text": {
+          "type": "Text",
+          "config": {
+            "label": "Body Text",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}

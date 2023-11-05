@@ -602,12 +602,12 @@ export interface ContentBlockSliceDefaultItem {
   /**
    * List Item field in *ContentBlock → Items*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: content_block.items[].list_item
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  list_item: prismic.KeyTextField;
+  list_item: prismic.RichTextField;
 }
 
 /**
@@ -983,33 +983,6 @@ export type ServiceCardsSlice = prismic.SharedSlice<
 >;
 
 /**
- * Default variation for Test Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type TestSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Record<string, never>,
-  never
->;
-
-/**
- * Slice variation for *Test*
- */
-type TestSliceVariation = TestSliceDefault;
-
-/**
- * Test Shared Slice
- *
- * - **API ID**: `test`
- * - **Description**: Test
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type TestSlice = prismic.SharedSlice<"test", TestSliceVariation>;
-
-/**
  * Primary content in *TestimonialCarousel → Items*
  */
 export interface TestimonialCarouselSliceDefaultItem {
@@ -1211,9 +1184,6 @@ declare module "@prismicio/client" {
       ServiceCardsSliceDefaultItem,
       ServiceCardsSliceVariation,
       ServiceCardsSliceDefault,
-      TestSlice,
-      TestSliceVariation,
-      TestSliceDefault,
       TestimonialCarouselSlice,
       TestimonialCarouselSliceDefaultItem,
       TestimonialCarouselSliceVariation,

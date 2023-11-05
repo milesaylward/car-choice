@@ -6,6 +6,7 @@
       'hero',
       isCarousel ? 'hero--carousel' : ''
     ]"
+    :style="heroStyle"
   >
     <div
       v-for="(item, index) in slice.items"
@@ -13,6 +14,7 @@
       :key="index"
       v-appear="{ css: false }"
       ref="heroSlide"
+      :style="heroStyle"
     >
       <PrismicImage
         :field="item.image"
@@ -20,7 +22,7 @@
         :style="backgroundStyle"
       />
       <div class="hero__item__overlay" />
-      <div class="hero__item__content container">
+      <div class="hero__item__content container" ref="heroContent">
         <h1 class="display-2 ap-child">
           {{ item.headline_text }}
         </h1>
@@ -40,17 +42,22 @@ import { useUIStore } from "@store/uiStore";
 import { storeToRefs } from "pinia";
 
 const props = defineProps(getSliceComponentProps<Content.HeroSlice>(["slice", "index", "slices", "context"]));
-const { showLoader, scrollPos } = storeToRefs(useUIStore());
+const { showLoader, scrollPos, viewWidth } = storeToRefs(useUIStore());
 
 const isCarousel = computed(() => props.slice.items.length > 1);
 const activeIndex = ref(0);
 const appearIndex = ref<number | null>(null);
 const heroSlide = ref();
+const heroContent = ref();
+const minHeight = ref(0);
 let slideInterval: NodeJS.Timer;
 
 const backgroundStyle = computed(() => ({
   transform: `scale(1.2) translateY(${scrollPos.value * 0.1}px)`
 }));
+const heroStyle = computed(() => ({
+  minHeight: `${minHeight.value + 228}px`
+}))
 
 const changeSlide = () => {
   activeIndex.value = (activeIndex.value + 1) % props.slice.items.length;
@@ -64,12 +71,22 @@ const handleAnimSlide = () => {
   if (!slideInterval && isCarousel.value) slideInterval = setInterval(changeSlide, 10000);
 };
 
+const setSize = () => {
+  heroContent.value.forEach((slide: HTMLElement) => {
+    if (slide.clientHeight > minHeight.value) {
+      minHeight.value = slide.clientHeight;
+    }
+  });
+}
+
+watch(viewWidth, setSize);
 watch(showLoader, () => {
   handleAnimSlide();
 });
 
 onMounted(() => {
   if (!showLoader.value) handleAnimSlide();
+  setTimeout(() => { setSize(); }, 500);
 });
 
 </script>
@@ -84,6 +101,7 @@ onMounted(() => {
   &__item {
     max-height: 80vh;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-shrink: 0;
     position: absolute;
@@ -114,16 +132,21 @@ onMounted(() => {
       transform: translate(-50%, -50%);
       display: block;
       h1 {
-        text-wrap: balance;
         text-transform: uppercase;
+        @include bpMedium {
+          max-width: 800px;
+          text-wrap: balance;
+        }
       }
       .subtitle {
         margin-top: 16px;
       }
       p {
-        text-wrap: balance;
         max-width: 800px;
         margin: 16px 0 0;
+        @include bpMedium {
+          text-wrap: balance;
+        }
       }
       .button {
         margin-top: 32px;

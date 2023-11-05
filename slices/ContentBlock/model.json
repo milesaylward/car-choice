@@ -68,10 +68,12 @@
       },
       "items": {
         "list_item": {
-          "type": "Text",
+          "type": "StructuredText",
           "config": {
             "label": "List Item",
-            "placeholder": ""
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "strong"
           }
         }
       }

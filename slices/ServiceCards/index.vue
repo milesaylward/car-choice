@@ -45,6 +45,7 @@ const { items } = props.slice;
 <style lang="scss">
 .service-cards {
   padding: 48px 0 0;
+  overflow: hidden;
   @include bpMedium {
     padding: 80px 0 32px;
   }

@@ -40,16 +40,19 @@ const { items } = props.slice;
 <style lang="scss">
 
 .callout-banner {
-  padding: 80px 0;
+  padding: 40px 0;
   position: relative;
   overflow: hidden;
-  
+  @include bpMedium {
+    padding: 80px 0;
+  }
   &__bg {
     position: absolute;
     top: 0;
     height: 100%;
     width: 100%;
     object-fit: cover;
+    object-position: left;
   }
   .banner-item {
     display: flex;
@@ -57,6 +60,7 @@ const { items } = props.slice;
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
+    margin: 12px 0;
     h6 {
       color: rgba($ghost-white, 0.6);
     }

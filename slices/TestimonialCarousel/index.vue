@@ -33,17 +33,20 @@ const { items } = props.slice;
 <style lang="scss">
 .testimonial-carousel {
   padding: 48px 0;
+  overflow: hidden;
   @include bpMedium {
     padding: 80px 0;
   }
   .testimonial {
     width: 100%;
     flex-shrink: 0;
-    padding: 0 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @include bpLarge {
+      padding: 0 120px;
+    }
     hr {
       width: 120px;
     }

@@ -6,14 +6,14 @@
   >
     <div class="container">
       <div class="row justify-between align-end" v-appear>
-        <div class="col-6 ap-child">
+        <div class="col-12 col-md-6 ap-child">
           <h5 class="display-6">{{ headline }}</h5>
         </div>
         <span class="ap-child ap-child--1">
           <CcButton :label="button_label" :field="button_link" type="outline" />
         </span>
       </div>
-      <div class="row cards-section__row" v-appear="{ threshold: 0.5 }">
+      <div class="row cards-section__row" v-appear="{ threshold: 0.1 }">
         <div
           class="col-12 col-md-6 col-lg-4"
           v-for="(card, index) in items"
@@ -69,9 +69,16 @@ const {
 
 <style lang="scss">
 .cards-section {
-  padding: 100px 0;
+  padding: 40px 0;
+  @include bpMedium {
+    padding: 100px 0;
+  }
   h5 {
     text-transform: uppercase;
+    margin-bottom: 24px;
+    @include bpMedium {
+      margin-bottom: 0;
+    }
   }
   &__row {
     margin: 36px -12px;

@@ -23,6 +23,7 @@
       @change="handleChange"
       @focus="isFocused = true;"
       @blur="isFocused = false;"
+      :disabled="!options.length"
     >
       <option selected disabled v-if="options.length"></option>
       <option v-for="opt in options" :value="opt">{{ opt }}</option>
@@ -37,7 +38,7 @@ const props = defineProps({
   name: { type: String, required: true },
   label: { type: String, required: true },
   required: { default: true },
-  fullWidth: { default: false },
+  size: { default: 'normal' },
   type: { type: String, default: 'text' },
   options: { type: Array as PropType<Array<string>> , default: [] }
 });
@@ -48,7 +49,11 @@ const wrapperEl = computed(() => {
   if (props.type === 'select') return 'select';
   return 'input';
 });
-const classes = computed(() => !props.fullWidth ? 'col-md-6' : '');
+const classes = computed(() => {
+  if (props.size === 'small') return 'col-md-4';
+  if (props.size === 'large') return '';
+  return 'col-md-6';
+});
 const inputLabel = computed(() => props.required ? `${props.label}*` : props.label);
 const isFocused = ref(false);
 const focus = computed(() => isFocused.value || props.value);
@@ -74,6 +79,11 @@ const handleChange = (e: Event) => {
     left: 24px;
     transform-origin: left center;
     transition: transform 400ms $authenticMotion;
+  }
+  &.error {
+    input, select {
+      border-color: $imperial-red;
+    }
   }
   &.focus {
     label {

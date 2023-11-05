@@ -26,6 +26,8 @@ const handleScroll = () => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
+  window.addEventListener('resize', uiStore.setViewPortSize);
+  uiStore.setViewPortSize();
 });
 
 onBeforeUnmount(() => {

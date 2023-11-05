@@ -42,13 +42,15 @@ export default defineNuxtConfig({
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200' }
       ],
       script: [
-        { src: `https://www.google.com/recaptcha/api.js?render=${process.env.RECAPTCHA_KEY}` }
+        { src: `https://www.google.com/recaptcha/api.js?render=${process.env.RECAPTCHA_KEY}` },
+        { src: 'https://static.cdn.prismic.io/prismic.js?new=true&repo=car-choice', async: true, defer: true }
       ]
     },
     pageTransition: { name: 'page', mode: 'out-in' }
   },
   runtimeConfig: {
     recaptcha_secret: process.env.RECAPTCHA_SECRET,
+    car_query_url: 'https://www.carqueryapi.com/api/0.3',
     public: {
       maps_key: process.env.GOOGLE_API_KEY,
       recaptcha_key: process.env.RECAPTCHA_KEY,
@@ -62,7 +64,7 @@ export default defineNuxtConfig({
 
   prismic: {
     endpoint: repositoryName,
-    preview: '/api/preview',
+    preview: '/preview',
     clientConfig: {
       routes: [
         {

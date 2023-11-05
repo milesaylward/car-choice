@@ -40,6 +40,9 @@ body {
   display: flex;
   flex-direction: column;
   color: $ghost-white;
+  .grecaptcha-badge { 
+    visibility: hidden;
+  }
 
   &.locked {
     overflow: hidden;

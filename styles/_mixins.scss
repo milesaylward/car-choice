@@ -22,9 +22,9 @@ $line-height: 1.13;
 }
 @mixin hasDisplay2FontSize {
   @include displayFont;
-  font-size: 56px;
+  font-size: 42px;
   @include bpMedium {
-    font-size: 72px;
+    font-size: 60px;
   }
 }
 @mixin hasDisplay3FontSize {
@@ -52,7 +52,7 @@ $line-height: 1.13;
   @include displayFont;
   font-size: 24px;
   @include bpMedium {
-    font-size: 40px;
+    font-size: 32px;
   }
 }
 

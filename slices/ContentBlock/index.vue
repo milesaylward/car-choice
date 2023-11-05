@@ -11,8 +11,9 @@
         <p class="body ap-child ap-child--1">{{ sub_text }}</p>
         <ul class="content-block__list ap-child ap-child--2">
           <li v-for="item in items">
-            <CheckIcon />
-            <p class="body-small">{{ item.list_item }}</p>
+            <CheckIcon v-if="!useWrench" />
+            <span class="material-symbols-outlined" v-else>construction</span>
+            <PrismicRichText :field="item.list_item" class="body-small" />
           </li>
         </ul>
         <span class="button-wrapper ap-child ap-child--3">
@@ -20,11 +21,12 @@
         </span>
       </div>
       <div class="col-12 col-md-6">
-        <div class="image-grid">
+        <div class="image-grid" v-if="useGrid">
           <PrismicImage :field="main_image" class="top ap-child ap-child--4 ap-fade" />
           <PrismicImage :field="sub_image_1" class="ap-child ap-child--5 ap-fade" />
           <PrismicImage :field="sub_image_2" class="ap-child ap-child--6 ap-fade" />
         </div>
+        <PrismicImage :field="main_image" class="top ap-child ap-child--4 ap-fade single-image" v-else />
       </div>
     </div>
   </div>
@@ -50,6 +52,11 @@ const {
   },
   items,
 } = props.slice;
+
+const route = useRoute();
+const useWrench = computed(() => route.name === 'services-uid');
+const useGrid = computed(() => main_image.url && sub_image_1.url && sub_image_2.url);
+
 
 </script>
 
@@ -81,20 +88,31 @@ const {
     padding: 0;
     li {
       display: flex;
-      align-items: center;
-      margin: 4px 0;
+      align-items: flex-start;
+      margin: 12px 0;
       p {
         margin: 0;
       }
-      svg {
+      svg, .material-symbols-outlined {
         width: 16px;
         margin-right: 20px;
         fill: $imperial-red;
       }
+      .material-symbols-outlined {
+        width: auto;
+        color: $imperial-red;
+        font-size: 20px;
+      }
     }
+  }
+  .single-image {
+    margin-top: 32px;
+    @include bpMedium { margin-top: 0; }
   }
 
   .image-grid {
+    margin-top: 32px;
+    @include bpMedium { margin-top: 0; }
     display: grid; 
     grid-template-columns: 1fr 1fr; 
     grid-template-rows: 1fr 0.5fr; 

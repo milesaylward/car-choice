@@ -58,7 +58,6 @@ const updateSize = () => {
     sliderTransform.value = -(slideWidth * activeIndex.value);
     resizeTmo = setTimeout(() => { dragging.value = false; }, 50);
   }
-  console.log(slider.value.children[0].clientWidth);
   slideWidth = slider.value.children[0].getBoundingClientRect().width;
 }
 

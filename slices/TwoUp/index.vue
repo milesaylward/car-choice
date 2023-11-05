@@ -67,9 +67,14 @@ const handleLeave = () => {
 
 <style lang="scss">
 .two-up {
-  padding: 100px 0;
+  padding: 40px 0;
+  @include bpMedium {
+    padding: 100px 0;
+  }
   &__copy {
-    padding-left: 40px;
+    @include bpMedium {
+      padding-left: 40px;
+    }
     .eyebrow {
       margin-bottom: 16px;
       color: $xanthous;

@@ -2,6 +2,8 @@ export const useUIStore = defineStore('ui-store', {
   state: () => ({
     pageLoaded: false,
     scrollPos: 0,
+    viewWidth: 0,
+    viewHeight: 0,
     pageTransitonComplete: true,
   }),
   getters: {
@@ -10,6 +12,10 @@ export const useUIStore = defineStore('ui-store', {
   actions: {
     setPageLoaded(loaded: boolean) {
       this.pageLoaded = loaded;
+    },
+    setViewPortSize() {
+      this.viewHeight = window.innerHeight;
+      this.viewWidth = window.innerWidth;
     },
     setPageTransitonComplete(bool: boolean) {
       this.pageTransitonComplete = bool;

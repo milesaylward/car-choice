@@ -20,7 +20,6 @@ export const useContentStore = defineStore('content', {
       if (!data.every(val => val)) {
         const { data } = await useAsyncData('global', () => prismic.client.getSingle('global'));
         if (data.value) {
-          console.log(data.value);
           const { data: global_data } = data.value;
           const header = {
             button: {

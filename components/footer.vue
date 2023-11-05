@@ -129,7 +129,7 @@
 
   .footer-column-list {
     margin-top: 16px;
-    max-height: 100px;
+    max-height: 140px;
     flex-wrap: wrap;
     @include bpMedium {
       margin-top: 32px;

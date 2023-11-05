@@ -24,9 +24,15 @@ const handleScroll = () => {
   setScrollPosition(window.scrollY);
 };
 
+const handleTouch = () => {
+  document.body.classList.add('touch');
+  document.removeEventListener('touchstart', handleTouch);
+}
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
   window.addEventListener('resize', uiStore.setViewPortSize);
+  document.addEventListener('touchstart', handleTouch);
   uiStore.setViewPortSize();
 });
 

@@ -31,7 +31,7 @@ watch(showLoader, () => {
   setTimeout(() => { wrapper.value?.classList.add('mounted'); }, 500);
 });
 useHead({
-  title: prismic.asText(page.value?.data.title)
+  title: 'Car Choice Service - Home'
 });
 
 

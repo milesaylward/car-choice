@@ -6,7 +6,7 @@
   >
     <div class="container">
       <div class="row">
-        <div class="service-cards__cards" v-appear>
+        <div class="service-cards__cards" v-appear="{ threshold: 0.3 }">
           <PrismicLink
             v-for="(item, index) in items"
             class="service-cards__cards__card col-12 col-md-6 col-lg-4 ap-child"

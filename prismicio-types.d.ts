@@ -124,8 +124,7 @@ type PageDocumentDataSlicesSlice =
   | ContentBlockSlice
   | CardsSectionSlice
   | TwoUpSlice
-  | HeroSlice
-  | RichTextSlice;
+  | HeroSlice;
 
 /**
  * Content for Page documents
@@ -167,7 +166,6 @@ export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
 type ServicePageDocumentDataSlicesSlice =
-  | RichTextSlice
   | TestimonialCarouselSlice
   | TwoUpSlice
   | HeroSlice
@@ -833,66 +831,6 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
- * Primary content in *RichText → Primary*
- */
-export interface RichTextSliceDefaultPrimary {
-  /**
-   * Content field in *RichText → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Lorem ipsum...
-   * - **API ID Path**: rich_text.primary.content
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  content: prismic.RichTextField;
-}
-
-/**
- * Primary content in *RichText → Items*
- */
-export interface RichTextSliceDefaultItem {
-  /**
-   * Some new Field field in *RichText → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: rich_text.items[].some_new_field
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  some_new_field: prismic.KeyTextField;
-}
-
-/**
- * Default variation for RichText Slice
- *
- * - **API ID**: `default`
- * - **Description**: RichText
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RichTextSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<RichTextSliceDefaultPrimary>,
-  Simplify<RichTextSliceDefaultItem>
->;
-
-/**
- * Slice variation for *RichText*
- */
-type RichTextSliceVariation = RichTextSliceDefault;
-
-/**
- * RichText Shared Slice
- *
- * - **API ID**: `rich_text`
- * - **Description**: RichText
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RichTextSlice = prismic.SharedSlice<
-  "rich_text",
-  RichTextSliceVariation
->;
-
-/**
  * Primary content in *ServiceCards → Primary*
  */
 export interface ServiceCardsSliceDefaultPrimary {
@@ -1174,11 +1112,6 @@ declare module "@prismicio/client" {
       HeroSliceDefaultItem,
       HeroSliceVariation,
       HeroSliceDefault,
-      RichTextSlice,
-      RichTextSliceDefaultPrimary,
-      RichTextSliceDefaultItem,
-      RichTextSliceVariation,
-      RichTextSliceDefault,
       ServiceCardsSlice,
       ServiceCardsSliceDefaultPrimary,
       ServiceCardsSliceDefaultItem,

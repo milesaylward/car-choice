@@ -54,7 +54,9 @@ const classes = computed(() => ([
   background: $imperial-red;
   color: white;
   text-decoration: none;
-  font-family: $chakra;
+  font-family: $bebas;
+  letter-spacing: 1px;
+  font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
   transition: 300ms $authenticMotion;

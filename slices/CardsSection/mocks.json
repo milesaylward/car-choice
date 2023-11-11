@@ -44,7 +44,6 @@
 					[
 						"card_image",
 						{
-							"__TYPE__": "ImageContent",
 							"origin": {
 								"id": "main",
 								"url": "https://images.unsplash.com/photo-1576662712957-9c79ae1280f8",
@@ -62,6 +61,9 @@
 								},
 								"background": "transparent"
 							},
+							"credits": null,
+							"alt": null,
+							"__TYPE__": "ImageContent",
 							"thumbnails": {}
 						}
 					],
@@ -78,6 +80,66 @@
 						{
 							"__TYPE__": "FieldContent",
 							"value": "troops",
+							"type": "Text"
+						}
+					]
+				]
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "couponCards",
+		"primary": {
+			"headline": {
+				"__TYPE__": "FieldContent",
+				"value": "original",
+				"type": "Text"
+			},
+			"button_label": {
+				"__TYPE__": "FieldContent",
+				"value": "wife",
+				"type": "Text"
+			},
+			"button_link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com"
+				}
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"card_title",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "rear",
+							"type": "Text"
+						}
+					],
+					[
+						"card_body",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Non laborum culpa reprehenderit do officia commodo pariatur est eu dolor qui culpa proident qui. Culpa eiusmod mollit qui magna qui occaecat ipsum dolor et officia laboris culpa Lorem. Adipisicing ea consequat laboris officia proident pariatur cupidatat non quis ipsum sint."
+									}
+								}
+							]
+						}
+					],
+					[
+						"card_discout",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "blow",
 							"type": "Text"
 						}
 					]

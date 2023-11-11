@@ -83,6 +83,19 @@
           }
         }
       }
+    },
+    "Footer Hours": {
+      "slices4": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "footer_hours": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
     }
   }
 }

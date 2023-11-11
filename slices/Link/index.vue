@@ -18,7 +18,7 @@ defineProps(
 </script>
 <style lang="scss">
 .link {
-  font-family: $chakra;
+  font-family: $openSans;
   font-weight: 600;
   color: $ghost-white;
   text-decoration: none;

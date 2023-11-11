@@ -13,7 +13,7 @@
           class="banner-item col-6 col-md-3 ap-child"
           :class="`ap-child--${index}`"
         >
-          <h6 class="display-6">
+          <h6 class="display-5">
             {{ item.stat_number }}
           </h6>
           <p class="body">{{ item.stat_text }}</p>

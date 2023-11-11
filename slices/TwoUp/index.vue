@@ -25,7 +25,7 @@
         </div>  
         <div class="col-12 col-md-5 col-md-offset-1 two-up__copy">
           <h5 class="eyebrow ap-child ap-child--1">{{ eyebrow }}</h5>
-          <h5 class="display-6 ap-child ap-child--2">{{ headline }}</h5>
+          <h5 class="display-5 ap-child ap-child--2">{{ headline }}</h5>
           <p class="body ap-child ap-child--3">{{ body_text }}</p>
         </div>  
       </div>

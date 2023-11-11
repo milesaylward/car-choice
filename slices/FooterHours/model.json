@@ -1,0 +1,33 @@
+{
+  "id": "footer_hours",
+  "type": "SharedSlice",
+  "name": "FooterHours",
+  "description": "FooterHours",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "day": {
+          "type": "Text",
+          "config": {
+            "label": "Day",
+            "placeholder": ""
+          }
+        },
+        "time": {
+          "type": "Text",
+          "config": {
+            "label": "Time",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

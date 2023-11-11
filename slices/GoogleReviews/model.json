@@ -1,0 +1,26 @@
+{
+  "id": "google_reviews",
+  "type": "SharedSlice",
+  "name": "GoogleReviews",
+  "description": "GoogleReviews",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

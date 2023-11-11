@@ -119,6 +119,12 @@ router.beforeEach(() => {
       }
       .link {
         margin: 0;
+        &.router-link-exact-active {
+          pointer-events: none;
+          &::after {
+            transform: scaleX(1);
+          }
+        }
         @include bpLarge {
           margin: 0 12px;
         }

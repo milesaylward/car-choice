@@ -10,6 +10,8 @@ type GlobalDocumentDataSlices2Slice = HeaderLinkSlice;
 
 type GlobalDocumentDataSlices3Slice = HeaderLinkSlice;
 
+type GlobalDocumentDataSlices4Slice = FooterHoursSlice;
+
 /**
  * Content for Global documents
  */
@@ -97,7 +99,17 @@ interface GlobalDocumentData {
    * - **Tab**: Footer Column 2
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices3: prismic.SliceZone<GlobalDocumentDataSlices3Slice>;
+  slices3: prismic.SliceZone<GlobalDocumentDataSlices3Slice>
+  /**
+   * Slice Zone field in *Global*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: global.slices4[]
+   * - **Tab**: Footer Hours
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */;
+  slices4: prismic.SliceZone<GlobalDocumentDataSlices4Slice>;
 }
 
 /**
@@ -117,6 +129,7 @@ export type GlobalDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | GoogleReviewsSlice
   | ContactFormSlice
   | TestimonialCarouselSlice
   | ServiceCardsSlice
@@ -447,9 +460,94 @@ export type CardsSectionSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *CardsSection → Primary*
+ */
+export interface CardsSectionSliceCouponCardsPrimary {
+  /**
+   * Headline field in *CardsSection → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  headline: prismic.KeyTextField;
+
+  /**
+   * Button Label field in *CardsSection → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.primary.button_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_label: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *CardsSection → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Primary content in *CardsSection → Items*
+ */
+export interface CardsSectionSliceCouponCardsItem {
+  /**
+   * Card Discout field in *CardsSection → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.items[].card_discout
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  card_discout: prismic.KeyTextField;
+
+  /**
+   * Card Title field in *CardsSection → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.items[].card_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  card_title: prismic.KeyTextField;
+
+  /**
+   * Card Body field in *CardsSection → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards_section.items[].card_body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  card_body: prismic.RichTextField;
+}
+
+/**
+ * CouponCards variation for CardsSection Slice
+ *
+ * - **API ID**: `couponCards`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CardsSectionSliceCouponCards = prismic.SharedSliceVariation<
+  "couponCards",
+  Simplify<CardsSectionSliceCouponCardsPrimary>,
+  Simplify<CardsSectionSliceCouponCardsItem>
+>;
+
+/**
  * Slice variation for *CardsSection*
  */
-type CardsSectionSliceVariation = CardsSectionSliceDefault;
+type CardsSectionSliceVariation =
+  | CardsSectionSliceDefault
+  | CardsSectionSliceCouponCards;
 
 /**
  * CardsSection Shared Slice
@@ -639,6 +737,61 @@ export type ContentBlockSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *FooterHours → Primary*
+ */
+export interface FooterHoursSliceDefaultPrimary {
+  /**
+   * Day field in *FooterHours → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer_hours.primary.day
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  day: prismic.KeyTextField;
+
+  /**
+   * Time field in *FooterHours → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer_hours.primary.time
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  time: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for FooterHours Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FooterHoursSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FooterHoursSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FooterHours*
+ */
+type FooterHoursSliceVariation = FooterHoursSliceDefault;
+
+/**
+ * FooterHours Shared Slice
+ *
+ * - **API ID**: `footer_hours`
+ * - **Description**: FooterHours
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FooterHoursSlice = prismic.SharedSlice<
+  "footer_hours",
+  FooterHoursSliceVariation
+>;
+
+/**
  * Primary content in *FormServiceType → Primary*
  */
 export interface FormServiceTypeSliceDefaultPrimary {
@@ -681,6 +834,51 @@ type FormServiceTypeSliceVariation = FormServiceTypeSliceDefault;
 export type FormServiceTypeSlice = prismic.SharedSlice<
   "form_service_type",
   FormServiceTypeSliceVariation
+>;
+
+/**
+ * Primary content in *GoogleReviews → Primary*
+ */
+export interface GoogleReviewsSliceDefaultPrimary {
+  /**
+   * Title field in *GoogleReviews → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: google_reviews.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for GoogleReviews Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GoogleReviewsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<GoogleReviewsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *GoogleReviews*
+ */
+type GoogleReviewsSliceVariation = GoogleReviewsSliceDefault;
+
+/**
+ * GoogleReviews Shared Slice
+ *
+ * - **API ID**: `google_reviews`
+ * - **Description**: GoogleReviews
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GoogleReviewsSlice = prismic.SharedSlice<
+  "google_reviews",
+  GoogleReviewsSliceVariation
 >;
 
 /**
@@ -1072,6 +1270,7 @@ declare module "@prismicio/client" {
       GlobalDocumentDataSlicesSlice,
       GlobalDocumentDataSlices2Slice,
       GlobalDocumentDataSlices3Slice,
+      GlobalDocumentDataSlices4Slice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
@@ -1089,8 +1288,11 @@ declare module "@prismicio/client" {
       CardsSectionSlice,
       CardsSectionSliceDefaultPrimary,
       CardsSectionSliceDefaultItem,
+      CardsSectionSliceCouponCardsPrimary,
+      CardsSectionSliceCouponCardsItem,
       CardsSectionSliceVariation,
       CardsSectionSliceDefault,
+      CardsSectionSliceCouponCards,
       ContactFormSlice,
       ContactFormSliceDefaultPrimary,
       ContactFormSliceVariation,
@@ -1100,10 +1302,18 @@ declare module "@prismicio/client" {
       ContentBlockSliceDefaultItem,
       ContentBlockSliceVariation,
       ContentBlockSliceDefault,
+      FooterHoursSlice,
+      FooterHoursSliceDefaultPrimary,
+      FooterHoursSliceVariation,
+      FooterHoursSliceDefault,
       FormServiceTypeSlice,
       FormServiceTypeSliceDefaultPrimary,
       FormServiceTypeSliceVariation,
       FormServiceTypeSliceDefault,
+      GoogleReviewsSlice,
+      GoogleReviewsSliceDefaultPrimary,
+      GoogleReviewsSliceVariation,
+      GoogleReviewsSliceDefault,
       HeaderLinkSlice,
       HeaderLinkSliceDefaultPrimary,
       HeaderLinkSliceVariation,

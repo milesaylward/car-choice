@@ -1,0 +1,92 @@
+@mixin Particles {
+  .dot-wrapper-1 {
+    top: 58%;
+    left: 83%;
+    animation: fly 29s ease-in-out -7.1s infinite alternate;
+    .dot {
+      transform-origin: 5px -6px;
+      animation: rotating 21s ease-in-out -8.4s infinite;
+    }
+  }
+  .dot-wrapper-2 {
+    top: 24%;
+    left: 63%;
+    animation: fly 39s ease-in-out -7.9s infinite alternate;
+    .dot {
+      transform-origin: 6px 7px;
+      animation: rotating 20s ease-in-out -6.5s infinite;
+    }
+  }
+  .dot-wrapper-3 {
+    top: 91%;
+    left: 81%;
+    animation: fly 63s ease-in-out -4.4s infinite alternate;
+    .dot {
+      transform-origin: 0px 9px;
+      animation: rotating 19s ease-in-out -9.4s infinite;
+    }
+  }
+  .dot-wrapper-4 {
+    top: 89%;
+    left: 85%;
+    animation: fly 56s ease-in-out -3.4s infinite alternate;
+    .dot {
+      transform-origin: 5px 10px;
+      animation: rotating 18s ease-in-out -9.6s infinite;
+    }
+  }
+  .dot-wrapper-5 {
+    top: 45%;
+    left: 47%;
+    animation: fly 37s ease-in-out -2.3s infinite alternate;
+    .dot {
+      transform-origin: 5px -3px;
+      animation: rotating 29s ease-in-out -4.2s infinite;
+    }
+  }
+  .dot-wrapper-6 {
+    top: 28%;
+    left: 7%;
+    animation: fly 41s ease-in-out -4.3s infinite alternate;
+    .dot {
+      transform-origin: 6px 3px;
+      animation: rotating 29s ease-in-out -8.3s infinite;
+    }
+  }
+  .dot-wrapper-7 {
+    top: 70%;
+    left: 2%;
+    animation: fly 64s ease-in-out -0.9s infinite alternate;
+    .dot {
+      transform-origin: -5px 3px;
+      animation: rotating 14s ease-in-out -5.1s infinite;
+    }
+  }
+  .dot-wrapper-8 {
+    top: 100%;
+    left: 17%;
+    animation: fly 66s ease-in-out -7.9s infinite alternate;
+    .dot {
+      transform-origin: 13px 10px;
+      animation: rotating 17s ease-in-out -8s infinite;
+    }
+  }
+  .dot-wrapper-9 {
+    top: 12%;
+    left: 24%;
+    animation: fly 25s ease-in-out -5s infinite alternate;
+    .dot {
+      transform-origin: -10px 8px;
+      animation: rotating 24s ease-in-out -5.8s infinite;
+    }
+  }
+  .dot-wrapper-10 {
+    top: 88%;
+    left: 12%;
+    animation: fly 54s ease-in-out -6.3s infinite alternate;
+    .dot {
+      transform-origin: -8px 10px;
+      animation: rotating 21s ease-in-out -9.5s infinite;
+    }
+  }
+}

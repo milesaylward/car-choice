@@ -33,7 +33,8 @@ export const useContentStore = defineStore('content', {
             columns: [
               { label: global_data.label_1, links: global_data.slices2 },
               { label: global_data.label_2, links: global_data.slices3 }
-            ]
+            ],
+            hours: global_data.slices4
           }
           this.options.header = header;
           this.options.footer = footer;

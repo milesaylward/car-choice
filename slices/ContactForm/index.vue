@@ -7,7 +7,7 @@
     <div class="container" v-appear>
       <div class="row">
         <div class="col-12 col-md-8 col-lg-7">
-          <h6 class="display-6 ap-child">{{ title }}</h6>
+          <h6 class="display-5 ap-child">{{ title }}</h6>
           <p class="body ap-child ap-child--1">{{ body }}</p>
         </div>
         <form @submit="handleSubmit" ref="form" class="ap-child ap-child--2">
@@ -202,6 +202,7 @@ const handleFormChange = ({ value, name }: { value: string; name: string; }) => 
         padding: 0;
         margin: 0;
         font-size: 12px;
+        font-family: $openSans;
         &::after {
           bottom: 0;
         }

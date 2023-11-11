@@ -1,6 +1,6 @@
 @use "sass:color";
 @import "./variables";
-
+@import './particles';
 /* -------------------- */
 // Fonts
 
@@ -8,9 +8,10 @@ $line-height: 1.13;
 
 // Fonts - Display
 @mixin displayFont {
-  font-family: $chakra;
+  font-family: $bebas;
   font-weight: 600;
   line-height: $line-height;
+  letter-spacing: 0.04em;
 }
 
 @mixin hasDisplay1FontSize {
@@ -24,7 +25,7 @@ $line-height: 1.13;
   @include displayFont;
   font-size: 42px;
   @include bpMedium {
-    font-size: 60px;
+    font-size: 72px;
   }
 }
 @mixin hasDisplay3FontSize {
@@ -100,13 +101,14 @@ $line-height: 1.13;
 }
 
 @mixin inlineLink {
-  font-family: $chakra;
+  font-family: $openSans;
   font-weight: 600;
   color: $ghost-white;
   text-decoration: none;
   margin: 0 20px;
   padding: 8px 0;
-  font-size: 16px;
+  font-size: 20px;
+  letter-spacing: 1px;
   position: relative;
   &::after {
     position: absolute;

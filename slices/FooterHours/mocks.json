@@ -1,0 +1,19 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"day": {
+				"__TYPE__": "FieldContent",
+				"value": "nose",
+				"type": "Text"
+			},
+			"time": {
+				"__TYPE__": "FieldContent",
+				"value": "discussion",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

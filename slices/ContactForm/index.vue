@@ -183,6 +183,7 @@ const handleFormChange = ({ value, name }: { value: string; name: string; }) => 
       font-size: 14px;
       margin-top: 0;
       opacity: 0;
+      transform: translateY(40%);
       transition: opacity 300ms $authenticMotion;
       &.visible {
         opacity: 1;
@@ -192,11 +193,12 @@ const handleFormChange = ({ value, name }: { value: string; name: string; }) => 
       padding: 0 24px;
       margin: 12px 0 48px;
       color: $ghost-white;
+      transform: translateY(0%);
     }
     small {
       display: block;
       padding: 0 24px;
-      margin: 12px 0 48px;
+      margin: 12px 0 64px;
       font-size: 12px;
       .link {
         padding: 0;

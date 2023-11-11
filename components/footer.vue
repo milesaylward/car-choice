@@ -70,10 +70,7 @@ const { contact_info, columns, hours } = getOptions('footer');
 import Logo from '@/assets/images/logo.png';
 const link_columns = columns.map((col: any) => (
   { label: col.label, links: col.links }
-));
-
-console.log(hours);
-  
+));  
 </script>
 
 <style lang="scss">

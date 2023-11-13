@@ -18,7 +18,7 @@
           <FormInput name="date" type="date" :value="formData.date" label="Date" @change="handleFormChange" />
           <FormInput name="time" type="select" :value="formData.time" label="Preferred Time" @change="handleFormChange" :options="timeOptions" />
           <FormInput name="service" type="select" :value="formData.service" label="Service Type" @change="handleFormChange" :options="serviceOptions" />
-          <FormInput name="vin" :value="formData.vin" label="Vin Number" @change="handleFormChange" />
+          <FormInput name="vin" :value="formData.vin" label="VIN Number" @change="handleFormChange" />
           <FormInput size="small" name="year" type="number" :value="formData.year" label="Year" @change="handleFormChange" />
           <FormInput size="small" name="make" type="select" :value="formData.make" label="Make" @change="handleFormChange" :options="makeOptions" />
           <FormInput size="small" name="model" type="select" :value="formData.model" label="Model" @change="handleFormChange" :options="modelOptions" />
@@ -85,7 +85,7 @@ const showSuccess = ref(false);
 const cleanFormData = {
   first_name: '',
   last_name: '',
-  date: '',
+  date: new Date().toLocaleDateString('en-CA'),
   time: '',
   service: '',
   message: '',

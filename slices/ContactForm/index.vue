@@ -96,7 +96,7 @@ const cleanFormData = {
   make: '',
   model: '',
 };
-const formData = ref<{ [key: string]: any}>(cleanFormData);
+const formData = ref<{ [key: string]: any}>({ ...cleanFormData });
 
 watch(() => formData.value.year, (val) => {
   if (yearRegex.test(val)) fetchMakes();
@@ -146,7 +146,6 @@ const handleSubmit = async (e: Event) => {
     invalid.forEach((el: HTMLElement) => {
       el.parentElement?.classList.add('error');
     });
-
     showError.value = true;
   }
 }

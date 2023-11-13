@@ -1,8 +1,9 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  const res = await $fetch('https://submit-form.com/tZ3imieq', {
+  const { formspark_url } = useRuntimeConfig();
+  const res = await $fetch(formspark_url, {
     method: 'POST',
     body,
-  })
+  });
   return res;
 })

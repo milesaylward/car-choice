@@ -50,6 +50,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     recaptcha_secret: process.env.RECAPTCHA_SECRET,
+    formspark_url: process.env.FORMSPARK_URL,
     car_query_url: 'https://www.carqueryapi.com/api/0.3',
     public: {
       maps_key: process.env.GOOGLE_API_KEY,

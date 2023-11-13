@@ -12,7 +12,7 @@
   >
     <div class="container">
       <div class="row align-center">
-        <div class="col-12 col-md-6 ap-child">
+        <div class="col-12 col-md-6 ap-child two-up__image">
           <div class="two-up__lottie" v-if="lottie && lottie.url">
             <ClientOnly>
               <Vue3Lottie
@@ -22,6 +22,7 @@
               />
             </ClientOnly>
           </div>
+          <PrismicImage :field="image" v-else />
         </div>  
         <div class="col-12 col-md-5 col-md-offset-1 two-up__copy">
           <h5 class="eyebrow ap-child ap-child--1">{{ eyebrow }}</h5>
@@ -51,8 +52,11 @@ const { primary: {
   headline,
   body_text,
   animation,
+  image,
 } } = props.slice;
+
 const lottie = animation as any;
+const imageClass = computed(() => lottie && lottie.url ? 'two-up__lottie-wrapper' : 'two-up__image')
 const lottieEl = ref();
 
 const handleAppear = () => {
@@ -72,8 +76,10 @@ const handleLeave = () => {
     padding: 100px 0;
   }
   &__copy {
+    order: 1;
     @include bpMedium {
       padding-left: 40px;
+      order: 3;
     }
     .eyebrow {
       margin-bottom: 16px;
@@ -82,6 +88,10 @@ const handleLeave = () => {
     h5 {
       text-wrap: balance;
     }
+  }
+  &__image {
+    margin-top: 24px;
+    order: 3;
   }
 
 }

@@ -33,8 +33,12 @@ onMounted(() => {
     wrapper.value?.classList.add('mounted');
   }, 1000);
 });
-useHead({
-  title: `Car Choice Service - ${prismic.asText(page.value?.data.title)}`
-});
+const { meta_title, meta_description, og_image } = page.value.data;
+useHead({ title: meta_title || `Car Choice Service - ${prismic.asText(page.value?.data.title)}` });
+useSeoMeta({
+  description: meta_description,
+  ogDescription: meta_description,
+  ogImage: og_image.url || '/og-image.jpg',
+})
 </script>
 

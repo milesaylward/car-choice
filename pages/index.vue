@@ -30,9 +30,13 @@ const wrapper = ref();
 watch(showLoader, () => {
   setTimeout(() => { wrapper.value?.classList.add('mounted'); }, 500);
 });
-useHead({
-  title: 'Car Choice Service - Home'
-});
+const { meta_title, meta_description, og_image } = page.value.data;
+useHead({ title: meta_title });
+useSeoMeta({
+  description: meta_description,
+  ogDescription: meta_description,
+  ogImage: og_image.url || '/og-image.jpg',
+})
 
 
 onMounted(() => {

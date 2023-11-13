@@ -29,6 +29,18 @@ defineProps(
   getSliceComponentProps<Content.GoogleReviewsSlice>(["slice", "index","slices","context"])
 );
 
+const createPlaceHolder = (image: HTMLElement, imgWrapper: HTMLElement ) => {
+  const imageParent = image.parentElement;
+  image.remove();
+  const placeholder = document.createElement('span');
+  placeholder.classList.add('image-placeholder');
+  const nameWrapper = imgWrapper.parentElement?.querySelector('.sk-reviewer-name-action');
+  const name = nameWrapper?.querySelector('strong')?.innerText || '';
+  const firstInitial = name[0];
+  placeholder.innerText = firstInitial;
+  imageParent?.appendChild(placeholder);
+}
+
 const reviewWrapper = ref();
 let observer: MutationObserver;
 const checkImages = () => {
@@ -39,18 +51,9 @@ const checkImages = () => {
       var imgCheck = new Image();
       imgCheck.src = image.src;
       imgCheck.onload = () => {
-        if (!imgCheck.height) {
-          const imageParent = image.parentElement;
-          image.remove();
-          const placeholder = document.createElement('span');
-          placeholder.classList.add('image-placeholder');
-          const nameWrapper = imgWrapper.parentElement?.querySelector('.sk-reviewer-name-action');
-          const name = nameWrapper?.querySelector('strong')?.innerText || '';
-          const firstInitial = name[0];
-          placeholder.innerText = firstInitial;
-          imageParent?.appendChild(placeholder);
-        }
+        if (!imgCheck.height) createPlaceHolder(image, imgWrapper);
       }
+      imgCheck.onerror = () => { createPlaceHolder(image, imgWrapper); };
     });
     observer.disconnect();
   }
@@ -68,7 +71,7 @@ onMounted(() => {
     script.async = true;
     script.defer = true;
     script.src = 'https://widgets.sociablekit.com/google-reviews/widget.js';
-    document.body.appendChild(script);
+    setTimeout(() => { document.body.appendChild(script); }, 500);
   }
 });
 </script>

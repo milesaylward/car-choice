@@ -12,7 +12,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "slicemachine": "start-slicemachine",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "start": "node ./.output/server/index.mjs"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
